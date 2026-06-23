@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel & Tourism Planner</title>
+    <link rel="stylesheet" href="travel.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="main-header glass-effect">
+        <div class="container nav-container">
+            <h1 class="logo">Travel<span>Planner</span></h1>
+            <nav class="nav-links">
+                <a href="#hero">Home</a>
+                <a href="#destinations">Explore</a>
+                <a href="#itinerary">Plan</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero" class="hero-section">
+        <div class="hero-content">
+            <h2>Discover Your Next Great Adventure</h2>
+            <p>Explore beautiful destinations, plan your itinerary, and calculate your budget all in one place.</p>
+            
+            <div class="hero-search glass-effect">
+                <input type="text" id="main-search-input" placeholder="Where do you want to go?">
+                <button id="main-search-btn" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="destinations" class="section container">
+        <div class="section-header">
+            <h2>Destination Explorer</h2>
+            <p>Find the perfect spot for your next vacation.</p>
+        </div>
+        
+        <div class="filters-container glass-effect" id="destination-filters">
+            <input type="text" id="dest-search" class="filter-input" placeholder="Search by name...">
+            <select id="filter-country" class="filter-input">
+                <option value="all">All Countries</option>
+                <option value="france">France</option>
+                <option value="japan">Japan</option>
+                <option value="brazil">Brazil</option>
+            </select>
+            <select id="filter-budget" class="filter-input">
+                <option value="all">Any Budget</option>
+                <option value="low">$ (Budget)</option>
+                <option value="medium">$$ (Moderate)</option>
+                <option value="high">$$$ (Luxury)</option>
+            </select>
+            <select id="filter-category" class="filter-input">
+                <option value="all">All Categories</option>
+                <option value="beach">Beach</option>
+                <option value="mountain">Mountain</option>
+                <option value="city">City</option>
+            </select>
+        </div>
+
+        <div class="grid-layout" id="destination-grid">
+            <div class="card destination-card">
+                <div class="card-img placeholder-img">Image</div>
+                <div class="card-body">
+                    <div class="card-meta">
+                        <span class="rating">⭐ 4.8</span>
+                        <span class="category">City</span>
+                    </div>
+                    <h3>Paris, France</h3>
+                    <p>Experience the city of lights, stunning architecture, and world-class cuisine.</p>
+                    <button class="btn btn-outline dest-view-btn" data-id="1">View Details</button>
+                </div>
+            </div>
+            <div class="card destination-card">
+                <div class="card-img placeholder-img">Image</div>
+                <div class="card-body">
+                    <div class="card-meta">
+                        <span class="rating">⭐ 4.9</span>
+                        <span class="category">Mountain</span>
+                    </div>
+                    <h3>Swiss Alps</h3>
+                    <p>Breathtaking mountain views perfect for skiing and hiking adventures.</p>
+                    <button class="btn btn-outline dest-view-btn" data-id="2">View Details</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="budget" class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Budget Calculator</h2>
+                <p>Estimate your travel expenses.</p>
+            </div>
+
+            <div class="budget-layout">
+                <div class="budget-form glass-effect">
+                    <div class="form-group">
+                        <label for="total-budget">Total Budget ($)</label>
+                        <input type="number" id="total-budget" placeholder="e.g. 5000">
+                    </div>
+                    <div class="form-group">
+                        <label for="travelers">Number of Travelers</label>
+                        <input type="number" id="travelers" placeholder="e.g. 2">
+                    </div>
+                    <div class="form-group">
+                        <label for="duration">Trip Duration (Days)</label>
+                        <input type="number" id="duration" placeholder="e.g. 7">
+                    </div>
+
+                    <hr>
+                    <h4>Estimated Daily Expenses</h4>
+                    
+                    <div class="form-group">
+                        <label for="exp-transport">Transport</label>
+                        <input type="number" id="exp-transport" class="expense-input" placeholder="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="exp-hotel">Hotel</label>
+                        <input type="number" id="exp-hotel" class="expense-input" placeholder="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="exp-food">Food</label>
+                        <input type="number" id="exp-food" class="expense-input" placeholder="0">
+                    </div>
+                    <div class="form-group">
+                        <label for="exp-activities">Activities</label>
+                        <input type="number" id="exp-activities" class="expense-input" placeholder="0">
+                    </div>
+
+                    <button id="calc-budget-btn" class="btn btn-primary w-100">Calculate Breakdown</button>
+                </div>
+
+                <div class="budget-results glass-effect" id="budget-result-area">
+                    <h3>Budget Breakdown</h3>
+                    <div class="result-placeholder">
+                        <p>Enter your details and click calculate to see your personalized travel budget breakdown.</p>
+                        <div id="chart-pie-placeholder" class="placeholder-chart">Chart Area</div>
+                        <ul id="expense-list-output" class="expense-list">
+                            </ul>
+                        <div class="total-remaining" id="budget-status">
+                            <h4>Remaining Balance: <span id="balance-amount">$0.00</span></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="itinerary" class="section container">
+        <div class="section-header">
+            <h2>Itinerary Planner</h2>
+            <p>Organize your trip day by day.</p>
+        </div>
+
+        <div class="itinerary-controls">
+            <button id="add-day-btn" class="btn btn-primary">+ Add Day</button>
+        </div>
+
+        <div class="timeline" id="itinerary-timeline">
+            <div class="day-card glass-effect" data-day="1">
+                <div class="day-header">
+                    <h3>Day 1: Arrival & Exploration</h3>
+                    <button class="btn-icon delete-day">🗑️</button>
+                </div>
+                <div class="activity-container drop-zone" id="day-1-activities">
+                    <div class="activity-item draggable" draggable="true">
+                        <span class="time">10:00 AM</span>
+                        <div class="activity-details">
+                            <h4>Check-in at Hotel</h4>
+                            <p>Drop off luggage and freshen up.</p>
+                        </div>
+                        <button class="btn-icon remove-activity">✕</button>
+                    </div>
+                    <div class="activity-item draggable" draggable="true">
+                        <span class="time">01:00 PM</span>
+                        <div class="activity-details">
+                            <h4>Lunch at Downtown</h4>
+                            <p>Try local street food.</p>
+                        </div>
+                        <button class="btn-icon remove-activity">✕</button>
+                    </div>
+                </div>
+                <button class="btn btn-outline add-activity-btn" data-target="day-1-activities">+ Add Activity</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="hotels" class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Hotel Recommendations</h2>
+                <p>Top-rated stays for your comfort.</p>
+            </div>
+
+            <div class="grid-layout" id="hotel-grid">
+                <div class="card hotel-card">
+                    <div class="card-img placeholder-img">Hotel Image</div>
+                    <div class="card-body">
+                        <div class="hotel-header">
+                            <h3>Grand Plaza Hotel</h3>
+                            <span class="price"><strong>$150</strong>/night</span>
+                        </div>
+                        <p class="rating">⭐⭐⭐⭐⭐ (240 Reviews)</p>
+                        <div class="amenities">
+                            <span class="badge">Wi-Fi</span>
+                            <span class="badge">Pool</span>
+                            <span class="badge">Spa</span>
+                        </div>
+                        <button class="btn btn-primary w-100 book-hotel-btn" data-hotel-id="101">Book Now</button>
+                    </div>
+                </div>
+                
+                <div class="card hotel-card">
+                    <div class="card-img placeholder-img">Hotel Image</div>
+                    <div class="card-body">
+                        <div class="hotel-header">
+                            <h3>Oceanview Resort</h3>
+                            <span class="price"><strong>$220</strong>/night</span>
+                        </div>
+                        <p class="rating">⭐⭐⭐⭐ (189 Reviews)</p>
+                        <div class="amenities">
+                            <span class="badge">Beachfront</span>
+                            <span class="badge">Breakfast</span>
+                        </div>
+                        <button class="btn btn-primary w-100 book-hotel-btn" data-hotel-id="102">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="weather" class="section container">
+        <div class="section-header">
+            <h2>Weather Forecast</h2>
+            <p>Check the conditions before you pack.</p>
+        </div>
+
+        <div class="weather-dashboard glass-effect" id="weather-app">
+            <div class="weather-search">
+                <input type="text" id="weather-city-input" placeholder="Enter city name...">
+                <button id="get-weather-btn" class="btn btn-primary">Get Weather</button>
+            </div>
+
+            <div class="current-weather" id="current-weather-display">
+                <div class="weather-icon placeholder-icon">⛅</div>
+                <div class="weather-info">
+                    <h3 id="weather-city-name">City Name</h3>
+                    <div class="temp" id="weather-temp">72°F / 22°C</div>
+                    <p id="weather-desc">Partly Cloudy</p>
+                </div>
+            </div>
+
+            <div class="forecast-grid" id="forecast-container">
+                <div class="forecast-card">
+                    <h4>Mon</h4>
+                    <div class="placeholder-icon small">☀️</div>
+                    <p>75°F</p>
+                </div>
+                <div class="forecast-card">
+                    <h4>Tue</h4>
+                    <div class="placeholder-icon small">🌧️</div>
+                    <p>68°F</p>
+                </div>
+                <div class="forecast-card">
+                    <h4>Wed</h4>
+                    <div class="placeholder-icon small">⛅</div>
+                    <p>70°F</p>
+                </div>
+                <div class="forecast-card">
+                    <h4>Thu</h4>
+                    <div class="placeholder-icon small">☀️</div>
+                    <p>76°F</p>
+                </div>
+                <div class="forecast-card">
+                    <h4>Fri</h4>
+                    <div class="placeholder-icon small">☀️</div>
+                    <p>78°F</p>
+                </div>
+                <div class="forecast-card">
+                    <h4>Sat</h4>
+                    <div class="placeholder-icon small">☁️</div>
+                    <p>73°F</p>
+                </div>
+                <div class="forecast-card">
+                    <h4>Sun</h4>
+                    <div class="placeholder-icon small">🌧️</div>
+                    <p>65°F</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="analytics" class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Travel Insights & Recommendations</h2>
+                <p>Data-driven suggestions for your next trip.</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card glass-effect">
+                    <h3>Most Popular</h3>
+                    <p class="stat-value" id="stat-popular">Kyoto, Japan</p>
+                </div>
+                <div class="stat-card glass-effect">
+                    <h3>Average Trip Cost</h3>
+                    <p class="stat-value" id="stat-avg-cost">$1,250</p>
+                </div>
+                <div class="stat-card glass-effect">
+                    <h3>Trending Category</h3>
+                    <p class="stat-value" id="stat-trending">Eco-Tourism</p>
+                </div>
+            </div>
+
+            <div class="analytics-layout">
+                <div class="chart-section glass-effect">
+                    <h3>Seasonal Destination Trends</h3>
+                    <div id="main-analytics-chart" class="placeholder-chart large">Interactive Chart Placeholder</div>
+                </div>
+                
+                <div class="recommendations-section">
+                    <h3>Suggested For You</h3>
+                    <div class="rec-list" id="recommendation-list">
+                        <div class="rec-item glass-effect">
+                            <div class="rec-img placeholder-img">Img</div>
+                            <div class="rec-details">
+                                <h4>Bali, Indonesia</h4>
+                                <p>Matches your "Beach" preference.</p>
+                            </div>
+                        </div>
+                        <div class="rec-item glass-effect">
+                            <div class="rec-img placeholder-img">Img</div>
+                            <div class="rec-details">
+                                <h4>Rome, Italy</h4>
+                                <p>Trending globally this month.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="section container">
+        <div class="section-header">
+            <h2>What Travelers Say</h2>
+        </div>
+        <div class="grid-layout">
+            <div class="testimonial-card glass-effect">
+                <p class="quote">"This planner saved me hours of research. The budget calculator and itinerary features are flawless!"</p>
+                <div class="user-info">
+                    <strong>- Sarah Jenkins</strong>
+                </div>
+            </div>
+            <div class="testimonial-card glass-effect">
+                <p class="quote">"I love how I can drag and drop activities. Made our family trip to Europe so much easier to manage."</p>
+                <div class="user-info">
+                    <strong>- Mark D.</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="section bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+            </div>
+            <div class="faq-container" id="faq-accordion">
+                <details class="faq-item glass-effect">
+                    <summary>Is this planner free to use?</summary>
+                    <div class="faq-content">
+                        <p>Yes, our basic planning tools, including the itinerary builder and budget calculator, are entirely free.</p>
+                    </div>
+                </details>
+                <details class="faq-item glass-effect">
+                    <summary>Can I share my itinerary with friends?</summary>
+                    <div class="faq-content">
+                        <p>Currently, you can export your itinerary as a PDF. Live sharing features are coming soon!</p>
+                    </div>
+                </details>
+                <details class="faq-item glass-effect">
+                    <summary>How accurate is the budget calculator?</summary>
+                    <div class="faq-content">
+                        <p>It provides estimates based on current average costs. Actual expenses may vary based on your personal choices.</p>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section container">
+        <div class="section-header">
+            <h2>Contact Us</h2>
+            <p>Have questions? We'd love to hear from you.</p>
+        </div>
+        <div class="contact-form-container glass-effect">
+            <form id="contact-form" action="#" method="POST">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <h2>Travel<span>Planner</span></h2>
+                <p>Your ultimate tool for seamless travel planning and exploration.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <a href="#destinations">Destinations</a>
+                <a href="#itinerary">Itinerary</a>
+                <a href="#budget">Budget</a>
+                <a href="#weather">Weather</a>
+            </div>
+            <div class="footer-social">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <span class="icon">FB</span>
+                    <span class="icon">IG</span>
+                    <span class="icon">TW</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Travel & Tourism Planner. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
