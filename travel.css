@@ -333,8 +333,6 @@ input:focus, select:focus, textarea:focus {
     overflow: hidden;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     transition: var(--transition);
-    display: flex;
-    flex-direction: column;
 }
 
 .card:hover {
@@ -342,16 +340,8 @@ input:focus, select:focus, textarea:focus {
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
-.card-img {
-    height: 200px;
-    width: 100%;
-}
-
 .card-body {
     padding: 20px;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
 }
 
 .card-meta {
@@ -364,15 +354,14 @@ input:focus, select:focus, textarea:focus {
 
 .destination-card h3 {
     margin-bottom: 10px;
-    font-size: 1.3rem;
 }
 
 .destination-card p {
     font-size: 0.9rem;
     color: var(--text-muted);
     margin-bottom: 20px;
-    flex-grow: 1;
 }
+
 /* =========================================
    3. Budget Calculator (Atishay)
    ========================================= */
@@ -805,4 +794,78 @@ input:focus, select:focus, textarea:focus {
     border-top: 1px solid rgba(255,255,255,0.1);
     font-size: 0.9rem;
     color: #94a3b8;
+}
+/* =========================================
+   12. Booking Cart
+   ========================================= */
+.cart-wrapper {
+    padding: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.empty-msg {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 20px 0;
+}
+
+.basket-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.basket-item:last-of-type {
+    border-bottom: none;
+}
+
+.basket-info h4 {
+    margin-bottom: 5px;
+    color: var(--text-main);
+}
+
+.basket-info p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.basket-price-zone {
+    text-align: right;
+}
+
+.basket-cost {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.toss-btn {
+    background: transparent;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.toss-btn:hover {
+    text-decoration: underline;
+}
+
+.cart-footer {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px dashed #cbd5e1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cart-total {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-main);
 }
