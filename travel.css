@@ -869,3 +869,171 @@ input:focus, select:focus, textarea:focus {
     font-weight: 700;
     color: var(--text-main);
 }
+
+/* =========================================
+   BUDGET CALCULATOR — Extended Styles
+   All prefixed budget- / expense- / bsr-
+   to avoid collision with existing rules.
+   ========================================= */
+
+/* Currency row inside the form */
+.budget-currency-row {
+  margin-bottom: 1rem;
+}
+
+/* Results panel — hidden state vs revealed state */
+.budget-results .result-placeholder p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+/* Once JS adds .has-results, animate the panel in */
+#budget-result-area.has-results {
+  animation: budgetFadeIn 0.4s ease forwards;
+}
+
+@keyframes budgetFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+/* ── Summary row (4-cell grid) ── */
+.budget-summary-row {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+.bsr-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+@media (min-width: 600px) {
+  .bsr-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.bsr-cell {
+  background: var(--bg-light);
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.bsr-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.bsr-value {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+/* ── Individual expense rows ── */
+.expense-row {
+  list-style: none;
+  padding: 10px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.expense-row:last-of-type {
+  border-bottom: none;
+}
+
+.expense-row-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.expense-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.expense-label {
+  font-weight: 600;
+  font-size: 0.92rem;
+  flex: 1;
+  min-width: 80px;
+}
+
+.expense-daily {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.expense-total {
+  font-weight: 700;
+  color: var(--text-main);
+  font-size: 0.92rem;
+  white-space: nowrap;
+}
+
+.expense-pct {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  min-width: 34px;
+  text-align: right;
+}
+
+/* Progress bar */
+.expense-bar-track {
+  height: 6px;
+  background: #e2e8f0;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.expense-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: width 0.6s ease;
+}
+
+/* ── Balance status pill ── */
+.budget-ok {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #fff;
+  padding: 15px;
+  border-radius: var(--border-radius);
+  text-align: center;
+  margin-top: 16px;
+}
+
+.budget-over {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: #fff;
+  padding: 15px;
+  border-radius: var(--border-radius);
+  text-align: center;
+  margin-top: 16px;
+}
+
+.budget-ok h4,
+.budget-over h4 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* ── Reset button spacing ── */
+#reset-budget-btn {
+  margin-top: 10px;
+}
